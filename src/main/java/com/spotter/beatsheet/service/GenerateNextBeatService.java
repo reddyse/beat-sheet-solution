@@ -1,8 +1,8 @@
-package com.spotter.BeatSheet.service;
+package com.spotter.beatsheet.service;
 
-import com.spotter.BeatSheet.entity.Beat;
-import com.spotter.BeatSheet.entity.BeatSheet;
-import com.spotter.BeatSheet.model.MarkovModelForBeat;
+import com.spotter.beatsheet.entity.Beat;
+import com.spotter.beatsheet.entity.BeatSheet;
+import com.spotter.beatsheet.model.MarkovModelForBeat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

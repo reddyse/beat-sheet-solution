@@ -1,6 +1,5 @@
-package com.spotter.BeatSheet.entity;
+package com.spotter.beatsheet.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,9 +25,4 @@ public class Act {
 
     private String cameraAngle;
 
-    //@ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "beat_id", referencedColumnName = "id")
-    //@ManyToOne
-    //@JoinColumn(name = "beat_id", referencedColumnName = "id")
-    //private Beat beat;
 }

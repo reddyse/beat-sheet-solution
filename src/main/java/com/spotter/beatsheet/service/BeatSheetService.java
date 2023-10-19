@@ -1,9 +1,9 @@
-package com.spotter.BeatSheet.service;
+package com.spotter.beatsheet.service;
 
-import com.spotter.BeatSheet.entity.Act;
-import com.spotter.BeatSheet.entity.Beat;
-import com.spotter.BeatSheet.entity.BeatSheet;
-import com.spotter.BeatSheet.repository.BeatSheetRepository;
+import com.spotter.beatsheet.entity.Act;
+import com.spotter.beatsheet.entity.Beat;
+import com.spotter.beatsheet.entity.BeatSheet;
+import com.spotter.beatsheet.repository.BeatSheetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,6 @@ public class BeatSheetService {
 
     @Autowired
     private BeatSheetRepository beatSheetRepository;
-
-    @Autowired
-    private GenerateNextBeatService generateNextBeatService;
 
     public ResponseEntity<String> createBeatSheet(BeatSheet beatSheet){
         try {
@@ -102,6 +99,7 @@ public class BeatSheetService {
                         .findAny()
                         .orElse(null);
 
+                assert oldBeat != null;
                 oldBeat.setDescription(updatedBeat.getDescription());
                 oldBeat.setTimestamp(updatedBeat.getTimestamp());
                 oldBeat.setActs(updatedBeat.getActs());
@@ -176,12 +174,18 @@ public class BeatSheetService {
                         .orElse(null);
 
 
-                List<Act> acts = oldBeat.getActs();
+                List<Act> acts = null;
+                if (oldBeat != null) {
+                    acts = oldBeat.getActs();
+                }
 
-                Act oldAct = acts.stream()
-                                .filter(act -> actId==act.getId())
-                                .findAny()
-                                .orElse(null);
+                Act oldAct = null;
+                if (acts != null) {
+                    oldAct = acts.stream()
+                                    .filter(act -> actId==act.getId())
+                                    .findAny()
+                                    .orElse(null);
+                }
                 assert oldAct != null;
                 oldAct.setDescription(updatedAct.getDescription());
                 oldAct.setTimestamp(updatedAct.getTimestamp());
@@ -224,19 +228,6 @@ public class BeatSheetService {
             }
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Failed to delete Act in Beat: " + e.getMessage());
-        }
-    }
-
-    public ResponseEntity<?> generateNextBeatInBeatSheet(BeatSheet beatSheet) {
-        try {
-                if (!beatSheet.getBeats().isEmpty()) {
-                    ResponseEntity<?> nextBeat = generateNextBeatService.predictBeatSheet(beatSheet);
-                    return ResponseEntity.ok(nextBeat);
-                } else {
-                    return ResponseEntity.notFound().build();
-                }
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Failed to update Beat in BeatSheet: " + e.getMessage());
         }
     }
 }

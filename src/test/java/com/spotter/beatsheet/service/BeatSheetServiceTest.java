@@ -1,9 +1,9 @@
-package com.spotter.BeatSheet.service;
+package com.spotter.beatsheet.service;
 
-import com.spotter.BeatSheet.entity.Act;
-import com.spotter.BeatSheet.entity.Beat;
-import com.spotter.BeatSheet.entity.BeatSheet;
-import com.spotter.BeatSheet.repository.BeatSheetRepository;
+import com.spotter.beatsheet.entity.Act;
+import com.spotter.beatsheet.entity.Beat;
+import com.spotter.beatsheet.entity.BeatSheet;
+import com.spotter.beatsheet.repository.BeatSheetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -94,7 +94,7 @@ class BeatSheetServiceTest {
         // Set up mock behavior for the repository
         Mockito.when(beatSheetRepository.findById(id)).thenReturn(Optional.of(beatSheet));
 
-        ResponseEntity<String> response = beatSheetService.deleteBeatSheet(id);
+        ResponseEntity<String> response = (ResponseEntity<String>) beatSheetService.deleteBeatSheet(id);
 
         assertEquals(200, response.getStatusCodeValue());
         assertEquals("Success", response.getBody());

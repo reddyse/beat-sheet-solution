@@ -1,6 +1,5 @@
-package com.spotter.BeatSheet.entity;
+package com.spotter.beatsheet.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +19,6 @@ public class BeatSheet {
 
     private String title;
 
-    //@OneToMany(mappedBy = "beatSheet")
     @OneToMany(targetEntity = Beat.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "beatSheet_beats_fk", referencedColumnName = "id")
     private List<Beat> beats;

@@ -1,4 +1,4 @@
-package com.spotter.BeatSheet.model;
+package com.spotter.beatsheet.model;
 
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 class BeatContext {
-    private List<Long> beats;
+    private final List<Long> beats;
 
     public BeatContext(List<Long> beats) {
         this.beats = beats;
@@ -33,7 +33,7 @@ class BeatContext {
 
 }
 public class MarkovModelForBeat {
-    private Map<String, List<String>> transitions;
+    private final Map<String, List<String>> transitions;
 
     public MarkovModelForBeat(int order) {
         transitions = new HashMap<>();

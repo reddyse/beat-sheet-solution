@@ -1,17 +1,15 @@
-package com.spotter.BeatSheet.controller;
+package com.spotter.beatsheet.controller;
 
-import com.spotter.BeatSheet.entity.Act;
-import com.spotter.BeatSheet.entity.Beat;
-import com.spotter.BeatSheet.entity.BeatSheet;
-import com.spotter.BeatSheet.service.BeatSheetService;
-import com.spotter.BeatSheet.service.GenerateNextActService;
-import com.spotter.BeatSheet.service.GenerateNextBeatService;
+import com.spotter.beatsheet.entity.Act;
+import com.spotter.beatsheet.entity.Beat;
+import com.spotter.beatsheet.entity.BeatSheet;
+import com.spotter.beatsheet.service.BeatSheetService;
+import com.spotter.beatsheet.service.GenerateNextActService;
+import com.spotter.beatsheet.service.GenerateNextBeatService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/beatsheet")
@@ -21,10 +19,10 @@ public class BeatSheetController {
     private BeatSheetService beatSheetService;
 
     @Autowired
-    private GenerateNextBeatService generateNextBeatService;
+    private GenerateNextActService generateNextActService;
 
     @Autowired
-    private GenerateNextActService generateNextActService;
+    private GenerateNextBeatService generateNextBeatService;
 
 
     //BeatSheet
@@ -49,7 +47,6 @@ public class BeatSheetController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete Beat Sheet", description = "Delete an existing Beat Sheet using this endpoint")
     public String deleteBeatSheet(@PathVariable long id){
-        //TODO: Currently not deleting child records, should delete everything w.r.t the beatsheet
         beatSheetService.deleteBeatSheet(id);
         return "Success";
     }

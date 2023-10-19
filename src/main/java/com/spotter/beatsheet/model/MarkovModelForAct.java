@@ -1,12 +1,9 @@
-package com.spotter.BeatSheet.model;
+package com.spotter.beatsheet.model;
 
-import com.spotter.BeatSheet.entity.Act;
-
-import java.sql.Timestamp;
 import java.util.*;
 
 class ActContext {
-    private List<Long> acts;
+    private final List<Long> acts;
 
     public ActContext(List<Long> acts) {
         this.acts = acts;
