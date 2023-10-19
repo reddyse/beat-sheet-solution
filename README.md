@@ -184,7 +184,7 @@ DELETE /deleteAct/1/2/3
 
 ### Getting Started
 
-To run the User microservice locally, follow these steps:
+To run the BeatSheet microservice locally, follow these steps:
 
 ## Prerequisites
 
