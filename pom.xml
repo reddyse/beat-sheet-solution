@@ -68,6 +68,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>beat-sheet-service-0.0.1</finalName>
 	</build>
 
 </project>
