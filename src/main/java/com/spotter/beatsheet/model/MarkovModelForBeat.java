@@ -1,15 +1,12 @@
 package com.spotter.beatsheet.model;
 
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
+// BeatContext class encapsulates a list of Long values representing Beats.
 class BeatContext {
     private final List<Long> beats;
 
+    // Constructor for BeatContext that initializes the list of Beats.
     public BeatContext(List<Long> beats) {
         this.beats = beats;
     }
@@ -30,24 +27,29 @@ class BeatContext {
         BeatContext other = (BeatContext) obj;
         return beats.equals(other.beats);
     }
-
 }
 public class MarkovModelForBeat {
     private final Map<String, List<String>> transitions;
 
+    // Constructor for MarkovModelForBeat that initializes the transitions map based on the order.
     public MarkovModelForBeat(int order) {
         transitions = new HashMap<>();
         List<Long> beatIds = new ArrayList<>();
-        int numsGen =0;
-        while(numsGen<1000){
+        int numsGen = 0;
+
+        // Generate a list of random Long values (Beat IDs) for demonstration purposes.
+        while (numsGen < 10000) {
             Random rnd = new Random();
-            Long val = rnd.nextLong(15-1)+1;
+            Long val = rnd.nextLong(300 - 1) + 1;
             beatIds.add(val);
             numsGen++;
         }
+
+        // Build the Markov model based on the generated Beat IDs.
         buildModel(beatIds, order);
     }
 
+    // Private method to build the Markov model based on a list of Beat IDs and the specified order.
     private void buildModel(List<Long> beats, int order) {
         for (int i = 0; i < beats.size() - order; i++) {
             List<Long> context = beats.subList(i, i + order);
@@ -59,36 +61,18 @@ public class MarkovModelForBeat {
         }
     }
 
+    // Predict the next Beat based on a provided context (list of Beat IDs).
     public String predictNextBeat(List<Long> context) {
         BeatContext contextObj = new BeatContext(context);
         String contextKey = contextObj.toString();
         List<String> nextBeats = transitions.get(contextKey);
+
         if (nextBeats != null) {
             Random random = new Random();
             return nextBeats.get(random.nextInt(nextBeats.size()));
         } else {
+            // Return null if no prediction is available.
             return null;
         }
     }
-
-
-/*    public static void main(String[] args) {
-        List<Long> beatData = new ArrayList<>();
-        int order = 2;  // Set the order for considering previous beats.
-
-        MarkovModelForBeat model = new MarkovModelForBeat(order);
-
-        List<Long> context = new ArrayList<>();
-        context.add(1L);
-        context.add(2L);  // You can set the context based on previous beats.
-
-        String nextBeat = model.predictNextBeatV2(context);
-
-        if (nextBeat != null) {
-            System.out.println("The next beat following the context " + context + " is '" + nextBeat + "'.");
-        } else {
-            System.out.println("No information available for the given context.");
-        }
-    }*/
-
 }

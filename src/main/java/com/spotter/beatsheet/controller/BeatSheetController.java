@@ -97,14 +97,14 @@ public class BeatSheetController {
 
     //Predict new Beat
     @PostMapping("/generateNextBeat")
-    @Operation(summary = "Generates a new beat based on context provided", description = "Generate a new beat")
+    @Operation(summary = "Generates a new beat based on context provided, if the beat ids are in the range of 1-300", description = "Generate a new beat")
     public ResponseEntity<?> generateNewBeat(@RequestBody BeatSheet beatSheet){
         return generateNextBeatService.predictBeatSheet(beatSheet);
     }
 
     //Predict new Act
     @PostMapping("/generateNextAct")
-    @Operation(summary = "Generates a new beat based on context provided", description = "Generate a new beat")
+    @Operation(summary = "Generates a new beat based on context provided, if the act ids are in the range of 1-300", description = "Generate a new beat")
     public ResponseEntity<?> generateNewAct(@RequestBody Beat beat){
         return generateNextActService.predictAct(beat);
     }
