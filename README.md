@@ -3,6 +3,8 @@ The BeatSheetService is a component of the Spotter application responsible for m
 
 This README provides an overview of the service, its functionality, and how to use it.
 
+Swagger UI for the endpoint - http://{HOST}:8080/swagger-ui/index.html#/
+
 
 ## Table of Contents
 
@@ -21,6 +23,8 @@ This README provides an overview of the service, its functionality, and how to u
   - [Adding an Act to a Beat](#adding-an-act-to-a-beat)
   - [Updating an Act in a Beat](#updating-an-act-in-a-beat)
   - [Deleting an Act in a Beat](#deleting-an-act-in-a-beat)
+  - [Predict the next Beat in a BeatSheet](#predicting-next-beat)
+  - [Predict the next Act in a Beat](#predicting-next-beat)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
 - [Contributing](#contributing)
@@ -156,9 +160,13 @@ PUT /updateAct/1/2/3
 Content-Type: application/json
 
 {
-  "description": "Updated Act",
-  "timestamp": 98765
+  "id": 0,
+  "description": "string",
+  "timestamp": "2023-10-19T22:57:02.027Z",
+  "duration": 0,
+  "cameraAngle": "string"
 }
+
 ```
 
 
@@ -168,6 +176,68 @@ To delete an Act in a Beat, send an HTTP DELETE request with the BeatSheet ID, B
 ```http
 DELETE /deleteAct/1/2/3
 ```
+
+### Deleting an Act in a Beat
+To delete an Act in a Beat, send an HTTP DELETE request with the BeatSheet ID, Beat ID, and Act ID to the /deleteAct/{id}/{beatId}/{actId} endpoint. Example:
+
+```http
+DELETE /deleteAct/1/2/3
+```
+
+### Predict a new Act in a Beat
+To predict the next Act in a Beat, send an HTTP POST request to the /deleteAct/generateNextAct endpoint with the request body. Example:
+
+```http
+POST beatsheet/generateNextAct
+{
+      "id": 202,
+      "description": "UPDATEBEAT",
+      "timestamp": "2023-10-19T20:03:32.446+00:00",
+      "acts": [
+        {
+          "id": 150,
+          "description": "UPDATEDACT",
+          "timestamp": "2023-10-19T20:04:37.436+00:00",
+          "duration": 0,
+          "cameraAngle": "string"
+        },
+        {
+          "id": 180,
+          "description": "string",
+          "timestamp": "2023-10-19T20:05:29.372+00:00",
+          "duration": 0,
+          "cameraAngle": "string"
+        }
+      ]
+    }
+```
+
+### Predict a new Act in a Beat
+To predict the next Act in a Beat, send an HTTP POST request to the /deleteAct/generateNextAct endpoint with the request body. Example:
+
+```http
+POST beatsheet/generateNextAct
+{
+      "id": 202,
+      "description": "UPDATEBEAT",
+      "timestamp": "2023-10-19T20:03:32.446+00:00",
+      "acts": [
+        {
+          "id": 150,
+          "description": "UPDATEDACT",
+          "timestamp": "2023-10-19T20:04:37.436+00:00",
+          "duration": 0,
+          "cameraAngle": "string"
+        },
+        {
+          "id": 180,
+          "description": "string",
+          "timestamp": "2023-10-19T20:05:29.372+00:00",
+          "duration": 0,
+          "cameraAngle": "string"
+        }
+      ]
+    }
 
 
 ### Technologies Used
