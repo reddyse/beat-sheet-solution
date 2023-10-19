@@ -3,7 +3,7 @@ package com.spotter.beatsheet.controller;
 import com.spotter.beatsheet.entity.Act;
 import com.spotter.beatsheet.entity.Beat;
 import com.spotter.beatsheet.entity.BeatSheet;
-import com.spotter.beatsheet.service.BeatSheetService;
+import com.spotter.beatsheet.service.BeatSheetServiceImpl;
 import com.spotter.beatsheet.service.GenerateNextActService;
 import com.spotter.beatsheet.service.GenerateNextBeatService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class BeatSheetController {
 
     @Autowired
-    private BeatSheetService beatSheetService;
+    private BeatSheetServiceImpl beatSheetService;
 
     @Autowired
     private GenerateNextActService generateNextActService;

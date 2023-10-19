@@ -17,7 +17,9 @@ public class GenerateNextActService {
                     .map(Act::getId).toList();
             MarkovModelForAct markovModelForAct = new MarkovModelForAct(actContext.size());
             var newPredictedAct = markovModelForAct.predictNextAct(actContext);
-            if (newPredictedAct==null) throw new Exception();
+            if (newPredictedAct==null) {
+                return ResponseEntity.notFound().build();
+            }
             return ResponseEntity.ok(newPredictedAct);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Failed to predict next Act from the provided list of Beats: " + e.getMessage());

@@ -23,10 +23,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SuppressWarnings("ALL")
 @SpringBootTest
-class BeatSheetServiceTest {
+class BeatSheetServiceImplTest {
 
     @InjectMocks
-    private BeatSheetService beatSheetService;
+    private BeatSheetServiceImpl beatSheetService;
 
     @InjectMocks
     private GenerateNextBeatService generateNextBeatService;
