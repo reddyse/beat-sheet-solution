@@ -1,6 +1,8 @@
 # BeatSheet Microservice
 
-The BeatSheetService is a component of the Spotter application responsible for managing BeatSheets and their interactions. This README provides an overview of the service, its functionality, and how to use it.
+The BeatSheetService is a component of the Spotter application responsible for managing BeatSheets and their interactions. The service also builds and implements a **Markov model** based on the sample data and uses it to predict the next beat and next act. The MarkovModel class initializes the model, builds transitions from the input data, and provides a method to get the next beat or next act based on the current one. 
+
+This README provides an overview of the service, its functionality, and how to use it.
 
 
 ## Table of Contents
